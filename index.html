@@ -1,25 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>eCW Document Labeling & Fax Intake Standards</title>
+  <title>eCW Fax Intake, Document Labeling & Routing Standards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.4;
-      margin: 24px;
-      max-width: 1200px;
-    }
-    h1, h2, h3 {
-      margin-top: 28px;
-    }
-    .callout {
-      border: 2px solid #000;
-      padding: 14px;
-      margin: 20px 0;
-      background: #f9f9f9;
-    }
+    body { font-family: Arial, sans-serif; line-height: 1.4; margin: 24px; max-width: 1200px; }
+    h1, h2, h3 { margin-top: 26px; }
+    .callout { border: 2px solid #000; padding: 14px; margin: 18px 0; background: #f9f9f9; }
     pre {
       background: #f5f5f5;
       border: 2px solid #000;
@@ -30,105 +19,221 @@
       line-height: 1.4;
       overflow-x: auto;
     }
-    ul {
-      margin-left: 20px;
-    }
+    table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+    th, td { border: 1px solid #000; padding: 10px; vertical-align: top; }
+    th { background: #f2f2f2; text-align: left; }
+    .hp { font-weight: bold; }
+    .small { font-size: 13px; }
   </style>
 </head>
 
 <body>
 
-<h1>eCW Fax Intake, Document Labeling & TE Workflow</h1>
+<h1>eCW Fax Intake, Document Labeling & Routing Standards</h1>
 
 <div class="callout">
   <strong>Purpose:</strong><br>
-  Establish a single, standardized workflow for handling incoming faxes, creating Telephone Encounters (TEs), relabeling documents, and routing actionable items to Clinical Admin and providers.
+  Standardize how incoming faxes are handled, including when to route as a document, when to create a TE, who labels and closes documents, and what information must be captured before provider review.
 </div>
 
 <div class="callout">
   <strong>Golden Rule:</strong><br>
-  If unsure → Create TE → Assign to Clinical Admin → STOP
+  Route fast. Do not interpret outside of your role. When a TE is required, include only the minimum reason and assign correctly.
 </div>
 
-<h2>Fax Intake Decision Tree (Role-Based)</h2>
+<h2>Routing Matrix (Source of Truth)</h2>
+
+<table>
+  <tr>
+    <th>Fax Type</th>
+    <th>Delegator Action (Fax Inbox)</th>
+    <th>Next Owner / Destination</th>
+    <th>Priority Rules</th>
+    <th>Notes / Exceptions</th>
+  </tr>
+
+  <tr>
+    <td><strong>Results (Labs)</strong></td>
+    <td>Send as <strong>document</strong> to Provider</td>
+    <td>Provider</td>
+    <td><span class="hp">HP if anything abnormal</span></td>
+    <td>No TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Imaging Results (XR/US/CT/MRI)</strong></td>
+    <td>Send as <strong>document</strong> to Provider</td>
+    <td>Provider</td>
+    <td><span class="hp">HP if anything abnormal</span></td>
+    <td>No TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Orders (PT/OT/HH and other orders)</strong></td>
+    <td>Create <strong>TE</strong> from Fax Inbox and assign to <strong>Clinical Admin</strong></td>
+    <td>Clinical Admin → assign to <strong>OM</strong> for delegation</td>
+    <td>Routine unless deadline stated</td>
+    <td>CA team notes what is needed in TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Pre-Op</strong></td>
+    <td>Send as <strong>document</strong> to Provider</td>
+    <td>Provider</td>
+    <td>Time-sensitive if surgery date/deadline present</td>
+    <td>No TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Rx</strong></td>
+    <td>
+      <strong>Clarifications:</strong> Create TE → Assign to Clinical Admin<br>
+      <strong>Dr. Mulder:</strong> Create TE → Assign to Clinical Admin<br>
+      <strong>Provider no longer with Optima:</strong> Create TE → Assign to Clinical Admin<br>
+      <strong>All other RX:</strong> Delete
+    </td>
+    <td>Clinical Admin</td>
+    <td>Any RX TE sent to provider must be <span class="hp">HP</span></td>
+    <td>CA team reviews clarification, notes issue, and routes appropriately</td>
+  </tr>
+
+  <tr>
+    <td><strong>Medication PA</strong></td>
+    <td>
+      <strong>Approvals:</strong> Review, no TE<br>
+      <strong>Denials:</strong> Create TE → Assign to Clinical Admin<br>
+      <strong>Requests for PA:</strong> Create TE → Assign to Clinical Admin<br>
+      <strong>CoverMyMeds requests:</strong> Delete
+    </td>
+    <td>
+      Denials: CA notes reason → send to Provider<br>
+      Requests: CA processes per workflow
+    </td>
+    <td>Denials sent to Provider must be <span class="hp">HP</span></td>
+    <td>No TE for approvals</td>
+  </tr>
+
+  <tr>
+    <td><strong>Imaging PA</strong></td>
+    <td>Route <strong>document</strong> straight to <strong>Imaging PA bucket</strong></td>
+    <td>Imaging PA Team</td>
+    <td>Time-sensitive if deadline/P2P window present</td>
+    <td>No TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>DME (includes all CGM + DME requests)</strong></td>
+    <td>Create <strong>TE</strong> from Fax Inbox and assign to <strong>Clinical Admin</strong></td>
+    <td>Clinical Admin → assign to <strong>DME bucket</strong> for completion</td>
+    <td>Time-sensitive if urgent/insurance deadline stated</td>
+    <td>CA team notes what is needed in TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Referral correspondence</strong></td>
+    <td>Create <strong>TE</strong> from Fax Inbox and assign to <strong>Clinical Admin</strong></td>
+    <td>Clinical Admin → assign Provider to review / place new referral / outreach if appointment needed</td>
+    <td>Time-sensitive if denial or action deadline exists</td>
+    <td>CA team notes what is needed in TE</td>
+  </tr>
+
+  <tr>
+    <td><strong>Hospital</strong></td>
+    <td>
+      If <strong>Discharge Summary</strong>: Create TE → Assign to Clinical Admin<br>
+      If <strong>hospital records only</strong>: Send to Reviewed Team to label and determine
+    </td>
+    <td>
+      Discharge Summary: Clinical Admin TE Team<br>
+      Records only: Reviewed Team
+    </td>
+    <td>Discharge Summary is time-sensitive</td>
+    <td>TE must be noted: <strong>DISCHARGE SUMMARY</strong></td>
+  </tr>
+
+  <tr>
+    <td><strong>Consult Notes</strong></td>
+    <td>Attach / label / close</td>
+    <td>Reviewed Team</td>
+    <td>Routine</td>
+    <td>No TE</td>
+  </tr>
+</table>
+
+<h2>Visual Decision Tree (Role-Based)</h2>
 
 <pre>
-INCOMING FAX
-(Role: Delegator)
+INCOMING FAX (Role: Delegator)
 │
-├─ Is this fax one of the following?
-│  (Labs, Imaging, Orders, Pre-Op, RX, Medication PA, Imaging PA,
-│   DME, Referral correspondence, Admit/Discharge)
+├─ RESULTS (Labs) →
+│     Route as DOCUMENT to Provider
+│     Mark HP if abnormal
+│     STOP
 │
-│   ├─ YES →
-│   │     Create TE from Fax Inbox
-│   │     Assign TE to Clinical Admin
-│   │     Use MAIN REASON as TE title
-│   │     STOP
-│   │     (Role: Delegator)
-│   │
-│   └─ NO →
-│         Is this a CONSULT NOTE?
-│         (Role: Delegator)
+├─ IMAGING RESULTS →
+│     Route as DOCUMENT to Provider
+│     Mark HP if abnormal
+│     STOP
 │
-│         ├─ NO →
-│         │     Label document correctly
-│         │     Close document
-│         │     NO TE
-│         │     STOP
-│         │     (Role: Reviewed Team)
-│         │
-│         └─ YES →
-│               Does the consult note include a recommendation
-│               requiring action?
-│               (follow-up, order, medication change, timeframe)
-│               (Role: Reviewed Team)
+├─ PRE-OP →
+│     Route as DOCUMENT to Provider
+│     STOP
 │
-│               ├─ YES →
-│               │     Create TE
-│               │     TE Title: Consult Note
-│               │     Assign to Clinical Admin
-│               │     STOP
-│               │     (Role: Delegator)
-│               │
-│               └─ NO →
-│                     Label document correctly
-│                     Close document
-│                     NO TE
-│                     STOP
-│                     (Role: Reviewed Team)
+├─ IMAGING PA →
+│     Route DOCUMENT to Imaging PA bucket
+│     STOP
+│
+├─ ORDERS →
+│     Create TE → Assign to Clinical Admin
+│     STOP
+│
+├─ DME / CGM →
+│     Create TE → Assign to Clinical Admin
+│     STOP
+│
+├─ REFERRAL CORRESPONDENCE →
+│     Create TE → Assign to Clinical Admin
+│     STOP
+│
+├─ HOSPITAL →
+│     Is this a DISCHARGE SUMMARY?
+│       ├─ YES → Create TE (note: DISCHARGE SUMMARY) → Assign to Clinical Admin → STOP
+│       └─ NO  → Send to Reviewed Team to label/determine → STOP
+│
+├─ RX →
+│     Is this a CLARIFICATION?
+│       ├─ YES → Create TE → Assign to Clinical Admin → STOP
+│       └─ NO →
+│            Is provider Dr. Mulder OR provider no longer with Optima?
+│              ├─ YES → Create TE → Assign to Clinical Admin → HP → STOP
+│              └─ NO  → DELETE → STOP
+│
+├─ MEDICATION PA →
+│     Approval? → Review, NO TE → STOP
+│     Denial?   → Create TE → Assign to Clinical Admin → CA notes reason → Send to Provider as HP → STOP
+│     Request?  → Create TE → Assign to Clinical Admin → STOP
+│     CoverMyMeds requests → Delete → STOP
+│
+└─ CONSULT NOTE →
+      Attach / label / close (No TE)
+      STOP
 </pre>
-
-<h2>TE Title Standards (Delegators)</h2>
-<ul>
-  <li>Results</li>
-  <li>Imaging</li>
-  <li>Orders</li>
-  <li>Pre-Op</li>
-  <li>Rx</li>
-  <li>Medication PA</li>
-  <li>Imaging PA</li>
-  <li>DME</li>
-  <li>Referral</li>
-  <li>Hospital</li>
-  <li>Consult Note (action required only)</li>
-</ul>
 
 <h2>Reviewed Team: Document Insight (Required Fields)</h2>
 
 <div class="callout">
   <strong>Reviewed Team Responsibility:</strong><br>
-  Relabel and close documents, then add Document Insight into the TE so the TE Team can act without rework.
+  Relabel and close documents, then add Document Insight into the TE when a TE exists so the TE Team can route without rework.
 </div>
 
 <h3>Required Document Insight Block (Paste into TE)</h3>
 
-<pre>
+<pre style="white-space: pre-wrap;">
 DOCUMENT INSIGHT (Reviewed Team)
 - Fax Type:
 - Key Summary (1–2 lines):
 - Action Needed: YES / NO
-- Who Owns Next Step: Provider / Clinic Staff / Clinical Admin / Referrals / Med PA / Imaging PA
+- Who Owns Next Step: Provider / Clinic Staff / Clinical Admin / OM / Referrals / Med PA / Imaging PA / DME
 - Due Date / Timeframe (if stated):
 - Urgency: Routine / Time-Sensitive / STAT
 - Provider FYI Needed: YES / NO
@@ -136,59 +241,24 @@ DOCUMENT INSIGHT (Reviewed Team)
 
 <h3>Field Rules</h3>
 <ul>
-  <li><strong>Fax Type</strong> must match TE title standards.</li>
-  <li><strong>Key Summary</strong> is limited to 1–2 lines. No copy/paste dumping.</li>
-  <li><strong>Action Needed</strong> must be explicitly marked YES or NO.</li>
+  <li><strong>Key Summary</strong> stays 1–2 lines. No copy/paste dumping.</li>
+  <li><strong>Action Needed</strong> must be explicitly YES or NO.</li>
   <li><strong>Due Date / Timeframe</strong> is required if mentioned anywhere in the fax.</li>
-  <li><strong>Urgency</strong> must be Time-Sensitive when deadlines, pre-op dates, discharge follow-up, or peer-to-peer windows exist.</li>
-  <li><strong>Provider FYI Needed</strong> should be YES only when provider review or decision is required.</li>
+  <li><strong>Urgency</strong> must be Time-Sensitive when deadlines, discharge follow-up, pre-op dates, or peer-to-peer windows exist.</li>
+  <li><strong>Provider FYI Needed</strong> = YES only when provider review/decision is required.</li>
 </ul>
-
-<h3>Examples</h3>
-
-<pre>
-DOCUMENT INSIGHT (Reviewed Team)
-- Fax Type: Imaging PA
-- Key Summary (1–2 lines): CT Abd/Pelvis requested. Payer requesting recent clinical notes.
-- Action Needed: YES
-- Who Owns Next Step: Imaging PA
-- Due Date / Timeframe (if stated): 01/18
-- Urgency: Time-Sensitive
-- Provider FYI Needed: NO
-</pre>
-
-<pre>
-DOCUMENT INSIGHT (Reviewed Team)
-- Fax Type: Hospital
-- Key Summary (1–2 lines): Discharge notification received. Follow-up recommended within 7–14 days.
-- Action Needed: YES
-- Who Owns Next Step: Clinical Admin
-- Due Date / Timeframe (if stated): 7–14 days from discharge
-- Urgency: Time-Sensitive
-- Provider FYI Needed: YES
-</pre>
-
-<pre>
-DOCUMENT INSIGHT (Reviewed Team)
-- Fax Type: Consult Note
-- Key Summary (1–2 lines): Ortho consult recommends PT referral and repeat imaging in 6 weeks.
-- Action Needed: YES
-- Who Owns Next Step: Provider
-- Due Date / Timeframe (if stated): 6 weeks
-- Urgency: Routine
-- Provider FYI Needed: YES
-</pre>
-
-<div class="callout">
-  <strong>Reviewed Team STOP Rule:</strong><br>
-  Once the document is relabeled, closed, and Document Insight is added to the TE, the Reviewed Team stops.
-</div>
 
 <div class="callout">
   <strong>Role Summary:</strong><br>
-  Delegators route. Reviewed Team interprets. Clinical Admin executes.
+  Delegators route. Reviewed Team labels and summarizes when needed. Clinical Admin executes and assigns.
+</div>
+
+<div class="callout small">
+  <strong>Last Updated:</strong> (update this date when you make changes)
 </div>
 
 </body>
 </html>
+```
+
 
