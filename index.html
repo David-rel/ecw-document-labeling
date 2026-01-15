@@ -1,38 +1,194 @@
-INCOMING FAX
-     |
-     v
-Is this fax one of the following?
-(Labs, Imaging, Orders, Pre-Op, RX, PA, DME, Referral, Admit/Discharge)
-     |
-     |— YES →
-     |      Create TE from Fax Inbox
-     |      Assign TE to Clinical Admin
-     |      Use MAIN REASON as TE title
-     |      STOP
-     |
-     |— NO →
-           Is this a CONSULT NOTE?
-                 |
-                 |— NO →
-                 |      Label correctly
-                 |      Close document
-                 |      STOP
-                 |
-                 |— YES →
-                       Does the consult note include
-                       a recommendation requiring action?
-                       (follow-up, order, med change, timeframe)
-                             |
-                             |— YES →
-                             |      Create TE
-                             |      TE title: Consult Note
-                             |      Assign to Clinical Admin
-                             |      STOP
-                             |
-                             |— NO →
-                                    Label correctly
-                                    Close document
-                                    NO TE
-                                    STOP
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>eCW Document Labeling & Fax Intake Standards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.4;
+      margin: 24px;
+      max-width: 1200px;
+    }
+    h1, h2, h3 {
+      margin-top: 28px;
+    }
+    .callout {
+      border: 2px solid #000;
+      padding: 14px;
+      margin: 20px 0;
+      background: #f9f9f9;
+    }
+    pre {
+      background: #f5f5f5;
+      border: 2px solid #000;
+      padding: 16px;
+      white-space: pre;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-x: auto;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
 
+<body>
+
+<h1>eCW Fax Intake, Document Labeling & TE Workflow</h1>
+
+<div class="callout">
+  <strong>Purpose:</strong><br>
+  Establish a single, standardized workflow for handling incoming faxes, creating Telephone Encounters (TEs), relabeling documents, and routing actionable items to Clinical Admin and providers.
+</div>
+
+<div class="callout">
+  <strong>Golden Rule:</strong><br>
+  If unsure → Create TE → Assign to Clinical Admin → STOP
+</div>
+
+<h2>Fax Intake Decision Tree (Role-Based)</h2>
+
+<pre>
+INCOMING FAX
+(Role: Delegator)
+│
+├─ Is this fax one of the following?
+│  (Labs, Imaging, Orders, Pre-Op, RX, Medication PA, Imaging PA,
+│   DME, Referral correspondence, Admit/Discharge)
+│
+│   ├─ YES →
+│   │     Create TE from Fax Inbox
+│   │     Assign TE to Clinical Admin
+│   │     Use MAIN REASON as TE title
+│   │     STOP
+│   │     (Role: Delegator)
+│   │
+│   └─ NO →
+│         Is this a CONSULT NOTE?
+│         (Role: Delegator)
+│
+│         ├─ NO →
+│         │     Label document correctly
+│         │     Close document
+│         │     NO TE
+│         │     STOP
+│         │     (Role: Reviewed Team)
+│         │
+│         └─ YES →
+│               Does the consult note include a recommendation
+│               requiring action?
+│               (follow-up, order, medication change, timeframe)
+│               (Role: Reviewed Team)
+│
+│               ├─ YES →
+│               │     Create TE
+│               │     TE Title: Consult Note
+│               │     Assign to Clinical Admin
+│               │     STOP
+│               │     (Role: Delegator)
+│               │
+│               └─ NO →
+│                     Label document correctly
+│                     Close document
+│                     NO TE
+│                     STOP
+│                     (Role: Reviewed Team)
+</pre>
+
+<h2>TE Title Standards (Delegators)</h2>
+<ul>
+  <li>Results</li>
+  <li>Imaging</li>
+  <li>Orders</li>
+  <li>Pre-Op</li>
+  <li>Rx</li>
+  <li>Medication PA</li>
+  <li>Imaging PA</li>
+  <li>DME</li>
+  <li>Referral</li>
+  <li>Hospital</li>
+  <li>Consult Note (action required only)</li>
+</ul>
+
+<h2>Reviewed Team: Document Insight (Required Fields)</h2>
+
+<div class="callout">
+  <strong>Reviewed Team Responsibility:</strong><br>
+  Relabel and close documents, then add Document Insight into the TE so the TE Team can act without rework.
+</div>
+
+<h3>Required Document Insight Block (Paste into TE)</h3>
+
+<pre>
+DOCUMENT INSIGHT (Reviewed Team)
+- Fax Type:
+- Key Summary (1–2 lines):
+- Action Needed: YES / NO
+- Who Owns Next Step: Provider / Clinic Staff / Clinical Admin / Referrals / Med PA / Imaging PA
+- Due Date / Timeframe (if stated):
+- Urgency: Routine / Time-Sensitive / STAT
+- Provider FYI Needed: YES / NO
+</pre>
+
+<h3>Field Rules</h3>
+<ul>
+  <li><strong>Fax Type</strong> must match TE title standards.</li>
+  <li><strong>Key Summary</strong> is limited to 1–2 lines. No copy/paste dumping.</li>
+  <li><strong>Action Needed</strong> must be explicitly marked YES or NO.</li>
+  <li><strong>Due Date / Timeframe</strong> is required if mentioned anywhere in the fax.</li>
+  <li><strong>Urgency</strong> must be Time-Sensitive when deadlines, pre-op dates, discharge follow-up, or peer-to-peer windows exist.</li>
+  <li><strong>Provider FYI Needed</strong> should be YES only when provider review or decision is required.</li>
+</ul>
+
+<h3>Examples</h3>
+
+<pre>
+DOCUMENT INSIGHT (Reviewed Team)
+- Fax Type: Imaging PA
+- Key Summary (1–2 lines): CT Abd/Pelvis requested. Payer requesting recent clinical notes.
+- Action Needed: YES
+- Who Owns Next Step: Imaging PA
+- Due Date / Timeframe (if stated): 01/18
+- Urgency: Time-Sensitive
+- Provider FYI Needed: NO
+</pre>
+
+<pre>
+DOCUMENT INSIGHT (Reviewed Team)
+- Fax Type: Hospital
+- Key Summary (1–2 lines): Discharge notification received. Follow-up recommended within 7–14 days.
+- Action Needed: YES
+- Who Owns Next Step: Clinical Admin
+- Due Date / Timeframe (if stated): 7–14 days from discharge
+- Urgency: Time-Sensitive
+- Provider FYI Needed: YES
+</pre>
+
+<pre>
+DOCUMENT INSIGHT (Reviewed Team)
+- Fax Type: Consult Note
+- Key Summary (1–2 lines): Ortho consult recommends PT referral and repeat imaging in 6 weeks.
+- Action Needed: YES
+- Who Owns Next Step: Provider
+- Due Date / Timeframe (if stated): 6 weeks
+- Urgency: Routine
+- Provider FYI Needed: YES
+</pre>
+
+<div class="callout">
+  <strong>Reviewed Team STOP Rule:</strong><br>
+  Once the document is relabeled, closed, and Document Insight is added to the TE, the Reviewed Team stops.
+</div>
+
+<div class="callout">
+  <strong>Role Summary:</strong><br>
+  Delegators route. Reviewed Team interprets. Clinical Admin executes.
+</div>
+
+</body>
+</html>
 
